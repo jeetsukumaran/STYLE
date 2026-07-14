@@ -45,7 +45,8 @@ If only some documents are relevant, say which ones and why.
 Name the relevant vocabulary constraints.
 
 If new terms are required or existing terms are ambiguous, say so explicitly
-and route the question through `STYLE-vocabulary.md`.
+and route the question through `STYLE-vocabulary.md` for project domain
+terms, or through `STYLE-workflow-vocabulary.md` for workflow-process terms.
 
 ### Upstream primary sources
 
