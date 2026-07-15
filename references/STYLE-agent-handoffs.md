@@ -7,7 +7,7 @@ and act on workflow handoffs.
 
 Its purpose is to prevent shallow handoffs, context loss, missing authorities,
 missing red-state repros, and downstream execution that quietly reopens
-already-settled decisions or misses the real contract.
+already-settled decisions or misses the contract that governs the work.
 
 ## Mandatory reading and pass-forward
 
@@ -32,7 +32,7 @@ A handoff is not a summary, and it is not a context dump.
 
 A handoff must give the downstream actor the exact controls needed to continue
 the workflow honestly, without reopening derivable decisions and without
-guessing at the governing boundaries.
+guessing at the governance, authorization, scope, or contract boundaries.
 
 ## Required handoff packet
 
@@ -47,7 +47,9 @@ The packet must include, where applicable:
 - current-state diagnosis
 - primary-goal lock
 - direct red-state repros
-- owner and invariant being repaired or relied on
+- named responsible code entity or external contract, the invariant being
+  repaired or relied on, the consumers that depend on it, and any duplicate or
+  bypass paths that must not keep the same responsibility
 - exact files or surfaces in scope
 - exact files or surfaces out of scope
 - required upstream primary sources
@@ -69,12 +71,15 @@ The sender of a handoff must:
 - identify any derivable design decisions that are already resolved
 - identify any true judgment calls that require `REVIEW` rather than silent
   implementer choice
-- identify the real owner, contract, or invariant under repair when the work is
+- identify the exact function, type, module, file, public surface, or external
+  contract responsible for the invariant or policy under repair when the work is
   architectural or cross-cutting
+- identify the verification artifact that fails if that responsibility remains
+  duplicated, bypassed, or assigned to the wrong entity
 
-Do not hand off work with phrases such as "decide", "determine whether",
-"follow the existing pattern", "if appropriate", or "as needed" for questions
-whose answers are derivable from the governing inputs.
+Do not hand off derivable decisions as implementer-choice questions. If an
+existing pattern is mandatory, name the exact file, function, type, or test that
+demonstrates the pattern and state how the downstream work must follow it.
 
 ## Receiver obligations
 
@@ -107,7 +112,10 @@ Handoffs must not:
 
 Reviews and audits of governed handoffs must ask:
 
-- does the handoff packet name the real owner and contract?
+- does the handoff packet name the exact responsible code entity or external
+  contract, its responsibility, the consumers that depend on it, the duplicate
+  or bypass paths that must not keep that responsibility, and the verification
+  artifact for that responsibility?
 - does it restate the active authorities and required upstream sources?
 - does it preserve settled decisions and authorization boundaries?
 - does it include the primary-goal lock and direct red-state repros where

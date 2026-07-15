@@ -8,7 +8,7 @@ reports.
 
 Its purpose is to prevent loss of context, loss of governance mandates, frozen
 misdiagnoses, and handoffs that preserve a narrow framing while dropping the
-real constraints.
+concrete constraints.
 
 ## Mandatory reading and pass-forward
 
@@ -24,6 +24,9 @@ It must explicitly restate:
 - which governance documents must be read line by line
 - which upstream primary sources must be read
 - which vocabulary constraints apply
+- which `STYLE-agent-language.md` specificity constraints apply when the
+  document uses ownership, contract, boundary, layer, invariant, compatibility,
+  or verification terms
 - which authorization boundaries apply
 - which verification gates define green state
 
@@ -31,8 +34,8 @@ This pass-forward obligation applies at every handoff boundary.
 
 ## Required sections
 
-Every workflow document should include the sections appropriate to its level,
-but the following obligations must be represented somewhere explicitly.
+Every workflow document should include the sections needed for its level, but
+the following obligations must be represented somewhere explicitly.
 
 ### Governance and required reading
 
@@ -46,7 +49,9 @@ Name the relevant vocabulary constraints.
 
 If new terms are required or existing terms are ambiguous, say so explicitly
 and route the question through `STYLE-vocabulary.md` for project domain
-terms, or through `STYLE-workflow-vocabulary.md` for workflow-process terms.
+terms, through `STYLE-workflow-vocabulary.md` for workflow-process terms, or
+through `STYLE-agent-language.md` for architectural shorthand that needs
+concrete expansion.
 
 ### Upstream primary sources
 
@@ -63,21 +68,34 @@ If the work addresses a bug or architectural defect, the document must state:
 
 - the observed failure mode
 - the suspected root cause
-- the owning layer or contract involved
+- the exact function, type, module, file, public surface, or external contract
+  suspected to be responsible for the relevant behavior
+- the consumers or public surfaces that depend on that behavior
+- any duplicate, fallback, or bypass paths suspected of keeping the same
+  responsibility
 
 ### Ownership and invariant framing
 
 If the work touches more than one module or layer, the document must identify:
 
-- the owning layer
-- the shared contract or invariant
+- the exact function, type, module, file, public surface, or external contract
+  responsible for each relevant invariant, contract, policy, or behavior
+- the shared contract or invariant in active-voice prose
+- the consumers that must call the responsible entity or receive its output
+- the duplicate, fallback, or defensive paths that must be deleted, demoted, or
+  prevented
+- the verification artifact that fails if the responsibility remains duplicated
+  or assigned to the wrong entity
 - whether a foundational tranche is required before user-facing work
 
 If a public semantic is accepted through more than one entry surface, the
 document must also identify:
 
-- the canonical owner that normalizes that semantic
+- the exact function, type, module, file, or public surface that normalizes that
+  semantic
 - each supported public surface through which it may enter
+- any public surface that may adapt the resolved value but must not recalculate
+  defaults, precedence rules, fallback behavior, or validation
 - which surfaces must be covered by verification
 
 ### Authorization boundary
@@ -112,7 +130,9 @@ At minimum, the handoff packet must include, where applicable:
 - current-state diagnosis
 - primary-goal lock
 - direct red-state repros
-- owner and invariant being repaired or relied on
+- named responsible code entity or external contract, the invariant or policy
+  being repaired or relied on, the consumers that depend on it, and duplicate or
+  bypass paths that must not keep the same responsibility
 - exact files or surfaces in scope
 - exact files or surfaces out of scope
 - required upstream primary sources
@@ -135,16 +155,16 @@ Each lock item must state:
 - the non-completion condition in the form "the work is not complete if..."
 - the direct red-state repro, historical bad behavior, or equivalent observed
   failure mode
-- the task, tranche subsection, or delegated owner that closes it
+- the task, tranche subsection, or exact responsible code entity that closes it
 - the verification artifact that must fail the old implementation or fake-fix
   shape
 
 Do not leave a user-stated primary goal or review finding as descriptive prose
 only.
 
-If multiple lock items share the same owning repair, they may point at the same
-task, but they must still remain separately named if one could survive while
-another is fixed.
+If multiple lock items share the same named repair entity, they may point at the
+same task, but they must still remain separately named if one could survive
+while another is fixed.
 
 Green test suites, docs builds, grep checks, and source-text audits are
 necessary but not sufficient as the only proof for a lock item unless no more
@@ -190,9 +210,11 @@ that is workflow drift and must be corrected before execution proceeds.
 Reviews and audits of workflow documents must ask:
 
 - did the mandates actually get passed forward?
-- did the document preserve the real owner and root-cause framing?
+- did the document preserve the exact responsible code entity or external
+  contract, its responsibility, the consumers that depend on it, duplicate or
+  bypass paths, and root-cause framing?
 - did it preserve upstream-reading obligations?
-- did it preserve the correct verification gates?
+- did it preserve the named verification gates?
 - did it create an honest authorization boundary?
 - did it include a usable handoff packet rather than a link-only or
   context-dump handoff?
@@ -201,4 +223,4 @@ Reviews and audits of workflow documents must ask:
 - could a fresh implementing agent still declare success while one of those
   lock items survives behind a green suite?
 
-If not, the workflow document is not safe for downstream execution.
+If not, the workflow document is not ready for downstream execution.
