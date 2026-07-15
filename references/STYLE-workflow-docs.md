@@ -15,6 +15,17 @@ concrete constraints.
 All contributors, including agents, must read this document line by line
 before generating or revising workflow documents or delegating work.
 
+All contributors, including agents, must also read `STYLE-agent-language.md`
+line by line before generating, revising, reviewing, auditing, or delegating any
+workflow document that uses ownership, contract, boundary, layer, invariant,
+compatibility, verification, source, or responsibility language.
+
+Compliance with `STYLE-agent-language.md` is mandatory. A workflow document is
+not ready for downstream execution if it uses architectural shorthand without
+naming the exact responsible code entity or external contract, the behavior or
+responsibility, the consumers, duplicate or bypass paths, and the verification
+artifact required by `STYLE-agent-language.md`.
+
 If you create any downstream workflow document or dispatch any downstream task,
 you must pass relevant mandates forward explicitly.
 
@@ -22,6 +33,9 @@ The downstream document must not merely inherit the parent context implicitly.
 It must explicitly restate:
 
 - which governance documents must be read line by line
+- that `STYLE-agent-language.md` must be read line by line whenever the document
+  uses ownership, contract, boundary, layer, invariant, compatibility,
+  verification, source, or responsibility language
 - which upstream primary sources must be read
 - which vocabulary constraints apply
 - which `STYLE-agent-language.md` specificity constraints apply when the
@@ -42,6 +56,11 @@ the following obligations must be represented somewhere explicitly.
 List every applicable governance document that must be read line by line.
 
 If only some documents are relevant, say which ones and why.
+
+If the document uses ownership, contract, boundary, layer, invariant,
+compatibility, verification, source, or responsibility language, list
+`STYLE-agent-language.md` as required reading and state that its concrete
+expansion rules are mandatory for the document.
 
 ### Controlled vocabulary
 
@@ -190,6 +209,13 @@ handoff packet does not waive revalidation.
 Workflow documents must not:
 
 - freeze a known partial diagnosis into downstream execution
+- omit required line-by-line reading and compliance with
+  `STYLE-agent-language.md` when the document uses ownership, contract,
+  boundary, layer, invariant, compatibility, verification, source, or
+  responsibility language
+- use architectural shorthand without naming the responsible entity, behavior,
+  consumers, duplicate or bypass paths, and verification artifact required by
+  `STYLE-agent-language.md`
 - omit architecture concerns merely to make the tranche look thinner
 - omit upstream references when framework semantics matter
 - omit verification gates when user-visible behavior is changing
@@ -210,6 +236,9 @@ that is workflow drift and must be corrected before execution proceeds.
 Reviews and audits of workflow documents must ask:
 
 - did the mandates actually get passed forward?
+- did the document mandate line-by-line reading of `STYLE-agent-language.md` and
+  comply with its concrete expansion rules wherever responsibility language
+  appears?
 - did the document preserve the exact responsible code entity or external
   contract, its responsibility, the consumers that depend on it, duplicate or
   bypass paths, and root-cause framing?

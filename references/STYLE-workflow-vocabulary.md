@@ -1,3 +1,31 @@
+# STYLE-workflow-vocabulary.md
+
+## Mandatory agent-language authority
+
+All agents and contributors must read `STYLE-agent-language.md` line by line
+before creating, revising, reviewing, auditing, or delegating any workflow
+document that uses this vocabulary.
+
+Compliance with `STYLE-agent-language.md` is mandatory, not advisory. A workflow
+document that uses ownership, contract, boundary, layer, invariant,
+compatibility, verification, source, or responsibility language must name the
+exact code entity or external contract involved, its responsibility, the
+consumers that rely on it, any duplicate or bypass paths that must not keep the
+same responsibility, and the verification artifact that fails if the
+responsibility remains unclear.
+
+Agents must not treat vocabulary definitions in this file as permission to use
+architectural shorthand. When a term in this file uses or implies ownership,
+contract, boundary, layer, invariant, compatibility, verification, source, or
+responsibility, downstream prose must expand the term according to
+`STYLE-agent-language.md`.
+
+If an agent cannot state the required concrete entity, behavior, forbidden
+duplicate or bypass path, and verification artifact, the agent must stop and
+request clarification rather than producing a workflow document, handoff,
+review, audit, implementation report, or delegated task that only appears to
+comply.
+
 ### `anti-fix`
 
 **Part of speech:** noun (process and review concept)
@@ -56,7 +84,9 @@ documents explicitly designated by the project owner.
 **Usage notes:** Governance documents are not optional background reading.
 Agents and contributors must read applicable governance documents line by line,
 comply with them, and pass their mandates forward into downstream instructions
-and delegated work.
+and delegated work. `STYLE-agent-language.md` is an applicable governance
+document whenever prose uses ownership, contract, boundary, layer, invariant,
+compatibility, verification, source, or responsibility language.
 
 **Proscribed alternates:** `reference` when the document is actually binding;
 `optional guidance` for mandatory governance.
